@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Simple Calculator</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+  <style>
+.button-calculate	{
+	width: 10%;
+}
+  </style>	
+</head>
+<body>
+	<div class="container">
+		<div class="card border-success">
+			<div class="card-header">
+				<h1 class="judul"><center>A Simple Calculator</center></h1>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-2">
+						<input type="number" class="form-control" id="input1">
+					</div>
+					<div id="operation"></div>
+					<div class="col-2">
+						<input type="number" class="form-control" id="input2">
+					</div>
+					<div>=</div>
+					<div class="col-2">
+						<input type="number" class="form-control" id="hasil">
+					</div>
+					<input type="hidden" name="" id="value1">
+					<input type="hidden" name="" id="op">
+					<input type="hidden" name="" id="value2">
+				</div><br>
+				<div class="row">
+					<div class="col-12">
+						<button onclick="setFunction('+')" type="button" class="btn btn-secondary button-calculate">+</button> &nbsp;
+						<button onclick="setFunction('-')" type="button" class="btn btn-secondary button-calculate">-</button> &nbsp;
+						<button onclick="setFunction('*')" type="button" class="btn btn-secondary button-calculate">x</button> &nbsp;
+						<button onclick="setFunction('/')" type="button" class="btn btn-secondary button-calculate">/</button> &nbsp;
+						<button onclick="hitung()" type="button" class="btn btn-success button-calculate">=</button>
+						<button onclick="setNull()" type="button" class="btn btn-primary button-calculate">CLEAR</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function setFunction(value) {
+		document.querySelector('#op').value = value
+		document.querySelector('#operation').innerHTML = value
+	}
+	function hitung() {
+		var op = document.querySelector('#op').value
+		var data1 = parseInt(document.querySelector('#input1').value)
+		var data2 = parseInt(document.querySelector('#input2').value)
+		var result = 0
+		if (op === '') {
+			alert('Please select operator first!')
+		} else {
+
+			switch (op){
+		        case '+':
+		            result = data1 + data2;
+		            break;
+		        case '-':
+		            result = data1 - data2;
+		            break;
+		        case '*':
+		            result = data1 * data2;
+		            break;
+		        case '/':
+		            result = data1 / data2;
+		            break;
+		    }
+	    	document.querySelector('#hasil').value = result
+		}
+	}
+	function setNull() {
+		document.querySelector('#input1').value = ''
+		document.querySelector('#input2').value = ''
+		document.querySelector('#op').value = ''
+		document.querySelector('#hasil').value = ''
+		document.querySelector('#operation').innerHTML = ''
+	}
+</script>
+</html>
